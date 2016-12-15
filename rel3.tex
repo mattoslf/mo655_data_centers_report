@@ -253,10 +253,74 @@ As topologias recursivas são as seguintes:\\
 \end{itemize}
 
 \paragraph{Dcell}
+A topologia Dcell utiliza a ideia de células compostas por 1 switch e servidores conectados neste switch. As células são interligadas então através dos servidores com outras células. Assim, o número de células é limitado pelo número de portas do servidor. Esta topologia é meio limitada quanto à expansão, uma vez que para que haja a redundância de conexões, cada servidor está conectado com outro servidor em outra célula. Para expandir o número de células é necessário que haja uma troca do switch por outro com um número maior de portas.\\
+
+Neste caso, o roteamento dentro da própria célula é feito pelo switch e o roteamento com outras células é feito pelos próprios servidores, o que causa um overhead e consequentemente um pequeno atraso do redirecionamento dos fluxos.\\
+
+A figura \ref{dcell} mostra um exemplo desta topologia para switches com 4 portas.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\textwidth]{imagens/dcell.png}
+\caption{Topologia Dcell para switches de 4 portas}
+\label{dcell}
+\end{figure}
+
 \paragraph{Bcube}
+Assim como no caso anterior, esta topologia se baseia na ideia de células interconectadas mas deixa a complexidade do redirecionamento dos fluxos para os switches, uma vez que neste caso, as células são conectadas por switches ao invés dos próprios servidores. Além disso, esta topologia também sofre limitações por conta do número de portas dos switches.\\
+
+A figura \ref{bcube} mostra esta topologia com 3 níveis e switches de 4 portas.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\textwidth]{imagens/bcube.png}
+\caption{Topologia Bcube para switches de 4 portas}
+\label{bcube}
+\end{figure}
+
 \paragraph{FiConn}
+Esta topologia é muito semelhante à Dcell, porém possui a limitação de ter somente 2 links conectados em cada célula, ou seja, diminui a complexidade de fios que esta topologia necessita. Porém, a capacidade da rede é diminuida, uma vez que menos links significam menos largura de banda e pode ser que ocorram congestionamentos mais facilmente.\\
+
+A figura \ref{ficonn} mostra a topologia da rede.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\textwidth]{imagens/ficonn.png}
+\caption{Topologia Bcube para switches de 4 portas}
+\label{ficonn}
+\end{figure}
+
 \paragraph{FlatNet}
+Esta topologia é semelhante ao Bcube, porém é mais interconectada, porque cada célula está conectada com $n$ switches, onde $n$ é o número de portas do switch interno da célula. A segunda camada de switches por sua vez conecta $n$ células. A diferença é que esta topologia divide a tarefa de roteamento com os switches e com os servidores, assim, os servidores podem rotear fluxos para outras células.\\
+
+A figura \ref{flatnet} mostra esta topologia para $n=4$.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\textwidth]{imagens/flatnet.png}
+\caption{Topologia Bcube para switches de 4 portas}
+\label{flatnet}
+\end{figure}
+
 \paragraph{SprintNet}
+Esta topologia utiliza células com 2 switches e 4 servidores e existe uma redundância nas conexões internas da célula. Neste caso, todas as conexões entre células são feitas pelos servidores conectados com switches. Isso faz com que todo fluxo interno seja roteado pelo switch e o fluxo externo seja roteado tanto pelos switches como pelos servidores. Assim, existem diversos caminhos que podem ser utilizados para a comunicação inter-células.\\
+
+A figure \ref{sprintnet} mostra esta topologia.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\textwidth]{imagens/springnet.png}
+\caption{Topologia Bcube para switches de 4 portas}
+\label{sprintnet}
+\end{figure}
+
+A tabela da figura \ref{comparacao} mostra a comparação da complexidade de algumas topologias mostradas. Como pode ser visto, as redes que suportam o maior número de servidores, também possuem uma complexidade muito grande de conexões, o que aumenta a complexidade de roteamento mas também aumenta o número de caminhos que podem ser escolhidos para um fluxo.\\
+
+\begin{figure}[H]
+\includegraphics[width=1.1\textwidth]{imagens/tabela.png}
+\caption{Topologia Bcube para switches de 4 portas}
+\label{comparacao}
+\end{figure}
 
 \section{SDN}
 
