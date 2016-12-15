@@ -317,12 +317,41 @@ A figure \ref{sprintnet} mostra esta topologia.\\
 A tabela da figura \ref{comparacao} mostra a comparação da complexidade de algumas topologias mostradas. Como pode ser visto, as redes que suportam o maior número de servidores, também possuem uma complexidade muito grande de conexões, o que aumenta a complexidade de roteamento mas também aumenta o número de caminhos que podem ser escolhidos para um fluxo.\\
 
 \begin{figure}[H]
+\centering
 \includegraphics[width=1.1\textwidth]{imagens/tabela.png}
 \caption{Topologia Bcube para switches de 4 portas}
 \label{comparacao}
 \end{figure}
 
 \section{SDN}
+
+Com o avanço do SDN, a ideia mais básica é definir servidores virtualizados e criar uma rede virtualizada. Este componente é a peça que faltava para criar datacenters totalmente definidos por software, uma vez que armazenamento e processamento virtualizados já existiam há um certo tempo. Com o SDN, é possível criar uma rede virtual com qualquer topologia e conectar máquinas virtuais para o processamento e discos virtuais para o armazenamento. A figura \ref{sdn} mostra a arquitetura de um datacenter virtualizado.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\textwidth]{imagens/inside-sdn.jpg}
+\caption{Topologia Bcube para switches de 4 portas}
+\label{sdn}
+\end{figure}
+
+Para que isso seja possível, é necessário que haja uma modificação na camada dos servidores, onde os racks são substituídos por switches OpenFlow que escalonam as tarefas para máquinas virtuais na camada de borda. Esta técnica já é utilizada pelo Paypal e pode ser vista na figura \ref{paypal}.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{imagens/sdn-1.jpg}
+\includegraphics[width=0.45\textwidth]{imagens/sdn-2.jpg}
+\caption{Topologia Bcube para switches de 4 portas}
+\label{paypal}
+\end{figure}
+
+O sistema fica então com duas camadas, uma camada física e uma camada virtualizada, como pode ser visto na figura \ref{sdn2}. A camada superior contém todos os recursos físicos do datacenter enquanto a camada inferior contém os recursos virtualizados. A interface entre as camadas é feita por um controlador SDN que é responsável por atribuir recursos físicos para recursos virtualizados.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\textwidth]{imagens/sdn-3.jpg}
+\caption{Topologia Bcube para switches de 4 portas}
+\label{sdn2}
+\end{figure}
 
 \chapter{Protocolos}
 
