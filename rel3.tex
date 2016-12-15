@@ -1,0 +1,179 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[hmargin=2cm,vmargin=3.5cm,bmargin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{indentfirst}
+\usepackage[pdftex]{hyperref}
+\usepackage{csvsimple}
+\usepackage{color}
+\usepackage{mathtools}
+\usepackage{float}
+
+% Headers and Footers
+\usepackage{fancyhdr}
+
+\addto\captionsportuguese{\renewcommand{\chaptername}{}}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  keywordstyle=\color{blue},       % keyword style
+%  language=Octave,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+%\begin{itemize}
+%\item A saída deve estar em ordem crescente (o elemento da saída não pode ser menor do que o seu antecessor de acordo com o critério adotado para ordenação);
+%\item A saída é uma permutação (reordenação) da entrada;
+%\end{itemize}
+	
+%\section{Algoritmos $\mathbf{O(n^2)}$}
+%\subsection{Bubble Sort}
+
+%\begin{lstlisting}[language=C++]
+%\end{lstlisting}
+
+%\begin{figure}[H]
+%\includegraphics[width=\textwidth]{Imagens/bubble.png}
+%\caption{Bubble Sort para diversos formatos de vetores}
+%\end{figure}
+
+%\begin{table}[H]
+%\caption{Tabela dos tempos para os vetores de melhores e piores casos}
+%\begin{center}
+%\begin{tabular}{|c|c|c|c|c|c|}
+%\hline 
+%Caso & Bubble Sort (us) & Insertion Sort (us) & Merge Sort (us) & Heap Sort (us) & Quick Sort (us) \\ 
+%\hline
+%Melhor & 0,86	& 0,84 & 8,49 & 1,99 & 2,61 \\
+%\hline 
+%Pior & 24,97 & 24,56 & 8,97 & 7,73 & 15,8 \\
+%\hline
+%\end{tabular}
+%\end{center}
+%\end{table}
+
+
+% Headers and Footers
+\pagestyle{fancy} % fancy style
+\lhead{\rightmark} % left header
+\rhead{\leftmark} % right header
+\lfoot{} % left footer
+\cfoot{\textbf{\thepage}} % central footer
+\rfoot{} % right footer
+% Headers and Footers
+
+\makeindex
+
+% define the title
+\author{Leandro Souza da  Silva - RA: 191082 \\ Luís Felipe Mattos - RA: 107822}
+\title{MO655 - Comunicação em Datacenters}
+%\date{}
+\begin{document}
+
+% generates the title
+\maketitle
+
+% insert the table of contents
+\tableofcontents
+
+\chapter{Introdução}
+
+Com o crescimento da demanda dos usuários por poder computacional e armazenamento, cada vez mais as grandes empresas estão investindo em estruturas próprias de datacenters. Esta estrutura inclui tanto os computadores em si, os discos de armazenamento e os racks como também inclui a própria sala que ficarão estes racks. Estas salas devem tem uma arquitetura própria, como por exemplo, o piso elevado, sistema de refrigeração e circulação de ar. Um exemplo por ser visto na figura \ref{dc_overview}.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\textwidth]{imagens/datacenter.png}
+\caption{Visão geral de um Datacenter}
+\label{dc_overview}
+\end{figure}
+
+Além da estrutura física, a parte computacional, principalmente relacionada à comunicação interna e externa do datacenter possui alguns requisitos básicos para que possa oferecer um serviço de qualidade para os usuários. Estes requisitos são citados a seguir:\\
+
+\begin{itemize}
+\item Escalabilidade
+\item Tolerância a Falhas
+\item Latêcia
+\item Capacidade da Rede
+\item Virtualização
+\end{itemize}
+
+A seguir, os requisitos citados serão mais detalhados.\\
+
+\section{Requisitos de Rede}
+
+\subsection{Escalabilidade}
+O sistema deve ser construido de tal forma que seja possível haver uma expansão, caso a demanda aumente. Este requisito diz respeito tanto ao hardware como ao software. Para o hardware, a estrutura das máquinas deve permitir que o sistema seja melhorado e também deve haver espaço físico para a inclusão de novas máquinas. Atualmente, existem alguns sistemas modulares que possuem uma fácil integração de novos módulos.\\
+
+Um exemplo é a utilização de datacenters em containers, cada container possui um sistema completo com refrigeração própria e é facilmente transportado. Com isso, pode-se expandir facilmente uma estrutura de um datacenter. Um exemplo de container pode ser visto na figura \ref{dc_container}.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\textwidth]{imagens/container_dc.jpg}
+\caption{Datacenter em container}
+\label{dc_container}
+\end{figure}
+
+\subsection{Tolerância a Falhas}
+O sistema deve ser capaz de prevenir e corrigir falhas. Por causa disso, a maioria dos sistemas de datacenters possuem redundâncias em quase todos aspectos do datacenter. Existem backups dos dados dos usuários, a comunicação interna é feita de modo que existam vários caminhos possíveis da fonte para o destino e além disso, alguns datacenters possuem backups em outros datacenters. Apesar disso, existe o custo de manter estas cópias atualizadas.\\
+
+Mais a frente falaremos um pouco mais sobre as redundâncias dos caminhos de comunicação interna dos datacenters, tanto relacionados à topologia como relacionado aos protocolos de comunicação e roteamento.\\
+
+\subsection{Latêcia}
+Um dos principais desafios dos datacenters é possuir baixa latência, assim, a performance do sistema como um todo se mantém em um nível aceitável pelos usuários. Para isso, a topologia é muito importante, uma vez que quanto menor o caminho entre a fonte e o destino, menor a latência. Porém, outro fator que influencia muito a latência é o nível de congestionamento da rede, mais a frente iremos tratar sobre os protocolos e como estes controlam o nível de congestionamento da rede.\\
+
+\subsection{Capacidade da Rede}
+
+
+\subsection{Virtualização}
+
+
+\chapter{Motivação}
+
+\chapter{Topologias}
+
+\chapter{Protocolos}
+
+\chapter{Tendências}
+
+\chapter{Conclusão}
+
+\chapter{Referências}
+
+\begin{itemize}
+\item Manual de referência do NS-3 \begin{verbatim}https://www.nsnam.org/docs/release/3.8/manual.pdf\end{verbatim}
+\item Documentação \begin{verbatim}https://www.nsnam.org/doxygen/index.html\end{verbatim}
+\end{itemize}
+
+\end{document}

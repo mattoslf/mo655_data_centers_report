@@ -1,0 +1,328 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[hmargin=2cm,vmargin=3.5cm,bmargin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{indentfirst}
+\usepackage[pdftex]{hyperref}
+\usepackage{csvsimple}
+\usepackage{color}
+\usepackage{mathtools}
+\usepackage{float}
+
+% Headers and Footers
+\usepackage{fancyhdr}
+
+\addto\captionsportuguese{\renewcommand{\chaptername}{}}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  keywordstyle=\color{blue},       % keyword style
+%  language=Octave,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+%\begin{itemize}
+%\item A saída deve estar em ordem crescente (o elemento da saída não pode ser menor do que o seu antecessor de acordo com o critério adotado para ordenação);
+%\item A saída é uma permutação (reordenação) da entrada;
+%\end{itemize}
+	
+%\section{Algoritmos $\mathbf{O(n^2)}$}
+%\subsection{Bubble Sort}
+
+%\begin{lstlisting}[language=C++]
+%\end{lstlisting}
+
+%\begin{figure}[H]
+%\includegraphics[width=\textwidth]{Imagens/bubble.png}
+%\caption{Bubble Sort para diversos formatos de vetores}
+%\end{figure}
+
+%\begin{table}[H]
+%\caption{Tabela dos tempos para os vetores de melhores e piores casos}
+%\begin{center}
+%\begin{tabular}{|c|c|c|c|c|c|}
+%\hline 
+%Caso & Bubble Sort (us) & Insertion Sort (us) & Merge Sort (us) & Heap Sort (us) & Quick Sort (us) \\ 
+%\hline
+%Melhor & 0,86	& 0,84 & 8,49 & 1,99 & 2,61 \\
+%\hline 
+%Pior & 24,97 & 24,56 & 8,97 & 7,73 & 15,8 \\
+%\hline
+%\end{tabular}
+%\end{center}
+%\end{table}
+
+
+% Headers and Footers
+\pagestyle{fancy} % fancy style
+\lhead{\rightmark} % left header
+\rhead{\leftmark} % right header
+\lfoot{} % left footer
+\cfoot{\textbf{\thepage}} % central footer
+\rfoot{} % right footer
+% Headers and Footers
+
+\makeindex
+
+% define the title
+\author{Luís Felipe Mattos - RA: 107822}
+\title{MC953 - Simulação de Rede Wifi}
+%\date{}
+\begin{document}
+
+% generates the title
+\maketitle
+
+% insert the table of contents
+\tableofcontents
+
+\chapter{Introdução}
+
+A simulação de redes é uma ferramenta muito útil para prever o comportamento de redes sem que haja necessidade de montar toda a estrutura necessária para os testes. Além disso, pode prover informações para o dimensionamento, como por exemplo os protocolos a serem usados, o tamanho dos pacotes, a taxa de transmissão necessária nos links, entre outras.\\
+
+Neste relatório, iremos montar uma rede simples, com 2 AP's Wifi conectados em um roteador e este conectado em um servidor que representa os serviços de internet que devem ser acessados pelos clientes. Foram feitas análises em cima desta rede utilizando o protocolo UDP e com dois tipos de tráfegos diferentes, em rajadas e com taxa de bits constante (CBR). Além disso, foi variado o número de clientes na rede, a fim de encontrar o ponto em que começa a ocorrer o congestionamento da rede e com isso, o ponto onde existe o aumento do atraso e da perda de pacotes e a diminuição da vazão máxima que a rede suporta.\\
+
+Esta análise pode ser usada para dimensionar o tipo de tráfego de uma rede, o tamanho dos pacotes, além da quantidade de dados que pode ser gerada pelos clientes e pelo servidor, sem que haja o congestionamento.\\
+
+O objetivo desta análise é demonstrar que a simulação pode ser bastante útil para fazer este dimensionamento sem que haja necessidade da construção de um protótipo físico.\\
+
+\chapter{Ferramentas}
+
+Para este projeto foi utilizado o simulador de redes NS-3. Este simulador utiliza uma biblioteca (em C++ ou em Python) que é utilizada para especificar a topologia de redes e o comportamento desejado de clientes e servidores.\\
+
+Para esta implementação, foram utilizados alguns módulos do NS-3:
+
+\begin{itemize}
+\item ApWifiMac: Cria o endereço MAC para os AP's e faz a comunicação do sinal da rede sem fio (camada física) com a camada de rede
+\item StaWifiMac: Cria o endereço MAC para os clientes e faz a comunicação do sinal da rede sem fio (camada física) com a camada de rede
+\item CsmaDevice - Responsável por fazer a comunicação na parte cabeada da rede, ou seja, entre os AP's, o switch e o servidor
+\item Mobility: Responsável por alocar as posições e a mobilidade dos nós da rede
+\item BridgeNetDevice: Responsável por fazer a comunicação da parte sem fio com a parte cabeada nos AP's
+\item OLSR: Responsável pelo roteamento de pacotes pela rede Wifi. Mantém uma tabela de redirecionamento de pacotes que é atualizada dinamicamente
+\item Stack: Responsável por criar as pilhas e buffers utilizadas pelos protocolos da camada de transporte e da camada de rede
+\item Ipv4Address: Responsável por atribuir os IP's para os nós da rede
+\item OnOffApplication: Define o comportamento dos clientes, como por exemplo, o tamanho dos pacotes e o intervalo de envio
+\end{itemize}
+
+Para verificar a corretude da topologia e do comportamento, foi utilizado o plugin nativo do NS-3 chamado Visualizer. Ele é bem simples de utilizar, bastando somente a utilização do seguinte comando:\\
+
+%\begin{lstlisting}[language=C++]
+	cmd.Parse (argc, argv);\\
+%\end{lstlisting}
+
+E também é necessário incluir a flag $--vis$ na linha de execução do programa. Desta forma, obtemos uma janela que mostra graficamente a topologia da rede e se pressionado o botão $F3$, a simulação é iniciada e todos os fluxos são mostrados, bem como as suas respectivas vazões. Um exemplo para 10 clientes pode ser visto na figura \ref{topo} e na figura \ref{fluxo}:\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\textwidth]{imagens/topo.png}
+\caption{Topologia da rede no Visualizer}
+\label{topo}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\textwidth]{imagens/fluxo.png}
+\caption{Fluxos da rede no Visualizer}
+\label{fluxo}
+\end{figure}
+
+Foram utilizados também scripts escritos em Python, que utilizam o pacote Parse. Estes scripts fazem o parsing dos resultados obtidos, calculam as médias da vazão, atraso e perda para uma única execução, a fim de calcular os valores médios para a rede como um todo.\\
+
+Este procedimento é feito para cada execução separadamente e então para todas as execuções é calculada a média dos valores, bem como o intervalo de confiança de 95\%, como foi pedido na especificação do projeto.\\
+
+\chapter{Cenários}
+
+O cenário utilizado para as execuções é bem simples, mas foi eficiente o bastante para se conseguir obter resultados expressivos. Foi feito um quadrado de 100m de lado, onde os dois AP's ficam localizados nos (0, 0) e (100, 100). Os cliente foram gerados em posições aleatórias dentro deste quadrado e se movem também aleatoriamente dentro do quadrado. Como pode ser visto na figura \ref{topo2}:\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.75\textwidth]{imagens/topo2.png}
+\caption{Topologia da rede}
+\label{topo2}
+\end{figure}
+
+Apesar de não existir a necessidade de calcular o hand-off (para alunos de graduação), a movimentação dos clientes foi utilizada para garantir um resultado mais próximo daquilo que encontramos na realidade. Além disso, os resultados foram melhores, uma vez que clientes poderiam ser gerados em posições fora do alcance da área de cobertura da Wifi mas que em algum momento se movem para perto de um AP e conseguem se conectar.\\
+
+Além disso, os testes foram realizados se alterando diferentes parâmetros a cada execução. Alguns desses parâmetros incluem a semente que gera aleatoriamente as posições e o movimento dos clientes, o número de clientes e o tipo de fluxo que será gerado por cada cliente.\\
+
+Para o número de clientes, foram utilizados valores entre 5 e 40, variando de 5 em 5, ou seja, 5, 10, 15, 20, 25, 30, 35 e 40 clientes. Além disso, para o tipo do fluxo, duas opções foram utilizadas, o fluxo em rajada e o fluxo com taxa de bits constante.\\
+
+Para o fluxo em rajada, foi escolhido que os clientes deveriam enviar dados durante 0.1s e em seguida entrariam em pausa por 1s, sendo assim, o fluxo seria enviado por um período curto e ficaria em pausa por um período maior, 10 vezes mais longo do que o pico de envio. Além disso, foi determinado que o pacote teria o tamanho de 1500 bytes.\\
+
+Para o fluxo em CBR, o fluxo tem uma taxa constante (500kbps, por padrão do NS-3) e um pacote de tamanho 512 bytes.\\
+
+Para a execução, tivemos que para cada tipo de fluxo, foram executados 5 iterações para cada número de clientes na rede, dando um total de 40 execuções para cada tipo de fluxo.\\
+
+\chapter{Resultados e Análise}
+
+Após as execuções, os seguintes gráficos foram gerados a partir dos dados obtidos:\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{imagens/vazao.png}
+\caption{Vazão média da rede}
+\label{vazao}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{imagens/atraso.png}
+\caption{Atraso médio da rede}
+\label{atraso}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{imagens/perda.png}
+\caption{Perda média da rede}
+\label{perda}
+\end{figure}
+
+Como pode ser visto no gráfico da figura \ref{vazao}, a vazão para o fluxo em rajada se mantém constante e baixa de acordo com o número de clientes enquanto a vazão para o fluxo CBR é alto para 5 cliente e diminui exponencialmente a medida que o número de nós da rede aumenta. \\
+
+Isso acontece porque o tráfego em rajadas não envia pacotes o suficiente para congestionar a rede, já que o tempo em que os pacotes são enviados é muito menor do que o tempo de silêncio da rede. Já para o tráfego CBR, quando há poucos nós, a rede fica relativamente descongestionada e pacotes são enviados continuamente, por causa disso, vazões mais altas são atingidas em comparação ao tráfigo em rajadas. Porém, ao se aumentar o número de clientes, a rede começa a ficar rapidamente congestionada, visto o número de pacotes enviados e a vazão cai exponencialmente.\\
+
+
+O gráfico da figura \ref{atraso} mostra que o atraso da rede aumenta de acordo com o número de clientes, porém, para o tráfego em rajadas, o aumento é pouco expressivo se comparado com o aumento do atraso na rede com tráfego CBR. Isso se dá pelo mesmo motivo já citado anteriormente, a rede com o tráfego em rajada não alcança o limiar necessário para congestionar a rede, ao contrário do tráfego CBR.\\
+
+Vemos que este congestionamento pode causar um atraso grande na rede, visto que os resultados obtidos para uma rede com 40 clientes tem um atraso de quase 4s enquanto que na rede com tráfego em rajada, para os mesmos 40 clientes, a rede tem um atraso de aproximadamente 0.25s.\\
+
+Para a perda de pacotes, como mostrado no gráfico da figura \ref{perda}, vemos que o número de pacotes enviados influencia diretamente na porcentagem de perda. Para 5 clientes vemos que o tráfego CBR tem uma perda muito menor do que o tráfego em rajadas, isso se dá por causa do número de pacotes enviados e por causa do baixo nível de congestionamento da rede. Poucos pacotes são perdidos em ambos os tipos de tráfego, mas o número de pacotes enviados é muito maior no fluxo CBR, isso causa a diminuição da porcentagem da perda.\\
+
+Este cenário muda bastante quando se aumenta o número de clientes da rede. No caso da rede com tráfego em rajadas, o número de pacotes perdidos se mantém constante, uma vez que a rede não é congestionada, porém como o número de pacotes enviados aumenta, a perda diminui com o número de clientes. Para o tráfego em CBR o congestionamento da rede faz com que o número de pacotes perdidos aumente consideravelmente e o número de pacotes enviados também aumente, mas como a rede fica cada vez mais congestionada, muitos pacotes são perdidos.\\
+
+Foram calculados também os intervalos de confiança de 95\% para as execuções sobre os mesmos parâmetros, ou seja, existe a garantia que 95\% das execuções possuem uma média dentro do intervalo calculado. Os intervalos são mostrados nas tabelas a seguir:\\
+
+\begin{table}[H]
+\caption{Vazão média e intervalos de confiança de 95\%}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline 
+\# de Nós & Tráfego em Rajada [min, média, máx] (Mbps) & Tráfego CBR [min, média, máx] (Mbps)\\
+\hline
+5 & [0.173, 0.194, 0.216] & [2.814, 2.918, 3.022]\\
+\hline
+10 & [0.208, 0.214, 0.220] & [2.012, 2.120, 2.228]\\
+\hline
+15 & [0.197, 0.209, 0.220] & [1.519, 1.578, 1.638]\\
+\hline
+20 & [0.215, 0.227, 0.240] & [1.108, 1.186, 1.263]\\
+\hline
+25 & [0.220, 0.230, 0.241] & [1.032, 1.124, 1.216]\\
+\hline
+30 & [0.243, 0.247, 0.251] & [0.886, 0.935, 0.984]\\
+\hline
+35 & [0.231, 0.241, 0.250] & [0.726, 0.884, 1.043]\\
+\hline
+40 & [0.243, 0.247, 0.252] & [0.859, 0.922, 0.986]\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Como podemos ver, a variação da vazão diminui quando o número de clientes aumenta, isso acontece porque 
+
+\begin{table}[H]
+\caption{Atraso médio e intervalos de confiança de 95\%}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline 
+\# de Nós & Tráfego em Rajada [min, média, máx] (ms) & Tráfego CBR [min, média, máx] (ms)\\
+\hline
+5 & [5.23, 6.92, 8.61] & [3.29, 18.16, 33.03]\\
+\hline
+10 & [16.66, 18.88, 21.10] & [273.22, 400.78, 528.34]\\
+\hline
+15 & [30.18, 35.44, 40.70] & [960.03, 1273.40, 1586.77]\\
+\hline
+20 & [62.98, 69.84, 76.70] & [1384.90, 1849.98, 2315.06]\\
+\hline
+25 & [90.90, 99.30, 107.69] & [1451.24, 1812.00, 2172.76]\\
+\hline
+30 & [133.73, 140.74, 147.75] & [2409.36, 2762.57, 3115.77]\\
+\hline
+35 & [149.16, 165.25, 181.34] & [2463.31, 3011.99, 3560.66]\\
+\hline
+40 & [198.55, 205.35, 212.15] & [3403.81, 3705.55, 4007.28]\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}[H]
+\caption{Perda média e intervalos de confiança de 95\%}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline 
+\# de Nós & Tráfego em Rajada [min, média, máx] (\%) & Tráfego CBR [min, média, máx] (\%)\\
+\hline
+5 & [10.07, 13.51, 16.95] & [0.0, 0.52, 1.35]\\
+\hline
+10 & [9.37, 11.50, 13.64] & [8.19, 11.09, 13.99]\\
+\hline
+15 & [12.07, 14.99, 17.91] & [13.11, 18.71, 24.30]\\
+\hline
+20 & [5.51, 10.07, 14.63] & [14.55, 21.80, 29.06]\\
+\hline
+25 & [6.08, 7.28, 8.47] & [13.00, 19.96, 26.92]\\
+\hline
+30 & [3.75, 4.21, 4.66] & [20.50, 27.08, 33.66]\\
+\hline
+35 & [2.65, 3.35, 4.05] & [20.67, 26.83, 32.98]\\
+\hline
+40 & [2.09, 2.67, 3.25] & [20.74, 24.03, 27.33]\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\chapter{Conclusão}
+
+Este experimento mostrou que o tráfego em rajada, apesar de possuir uma vazão muito menor do que o tráfego CBR, se mostrou mais confiável para o número de clientes testados, porém, neste caso, a rede está sub-utilizada, visto que o tráfego em rajada está abaixo da assíntota gerada pelo tráfego CBR, na figura \ref{vazao}. Poderia ser feito o redimensionamento desta rede, a fim de aumentar a eficiência.\\
+
+Poderia ser feito um aumento da taxa de dados gerados pelos clientes/servidor ou então, um aumento do tempo em que os clientes estão enviando rajadas de pacotes.\\
+
+De um modo geral, para poucos clientes, a rede com tráfego CBR se mostrou muito mais eficiente, uma vez que a vazão é grande e o atraso e a perda são pequenos. Enquanto que, para muitos clientes, a rede com tráfego em rajadas se mostrou mais eficiente, uma vez que o atraso e a perda são pequenos, apesar da vazão não ser tão alta como no tráfego CBR para a mesma quantidade de clientes.\\
+
+Para serviços que necessitam de alta disponibilidade/confiabilidade e baixa latência, mesmo com quantidade grande de outros nós conectados na mesma rede, o tráfego em rajadas se mostrou melhor, enquanto que para serviços que toleram uma alta taxa de perda de pacotes e um atraso grande, o tráfego CBR é uma opção melhor, já que a vazão é maior.\\
+
+\chapter{Referências}
+
+\begin{itemize}
+\item Manual de referência do NS-3 \begin{verbatim}https://www.nsnam.org/docs/release/3.8/manual.pdf\end{verbatim}
+\item Documentação \begin{verbatim}https://www.nsnam.org/doxygen/index.html\end{verbatim}
+\end{itemize}
+
+\end{document}
