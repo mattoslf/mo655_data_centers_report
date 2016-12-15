@@ -7,11 +7,12 @@
 \BOOKMARK [2][-]{subsection.1.1.5}{Virtualiza\347\343o}{section.1.1}% 7
 \BOOKMARK [0][-]{chapter.2}{Motiva\347\343o}{}% 8
 \BOOKMARK [0][-]{chapter.3}{Topologias}{}% 9
-\BOOKMARK [1][-]{section.3.1}{Tradicionais}{chapter.3}% 10
-\BOOKMARK [2][-]{subsection.3.1.1}{Baseadas em \301rvores}{section.3.1}% 11
-\BOOKMARK [2][-]{subsection.3.1.2}{Recursivas}{section.3.1}% 12
-\BOOKMARK [1][-]{section.3.2}{SDN}{chapter.3}% 13
-\BOOKMARK [0][-]{chapter.4}{Protocolos}{}% 14
+\BOOKMARK [0][-]{chapter.4}{Protocolos}{}% 10
+\BOOKMARK [1][-]{section.4.1}{Roteamento}{chapter.4}% 11
+\BOOKMARK [2][-]{subsection.4.1.1}{Equal Cost Multipath \(ECMP\)}{section.4.1}% 12
+\BOOKMARK [2][-]{subsection.4.1.2}{VL2}{section.4.1}% 13
+\BOOKMARK [2][-]{subsection.4.1.3}{Distributed Adaptive Routing for Datacenter Networks \(DRAD\)}{section.4.1}% 14
 \BOOKMARK [0][-]{chapter.5}{Tend\352ncias}{}% 15
-\BOOKMARK [0][-]{chapter.6}{Conclus\343o}{}% 16
-\BOOKMARK [0][-]{chapter.7}{Refer\352ncias}{}% 17
+\BOOKMARK [1][-]{section.5.1}{Facebook Fabric}{chapter.5}% 16
+\BOOKMARK [0][-]{chapter.6}{Conclus\343o}{}% 17
+\BOOKMARK [0][-]{chapter.7}{Refer\352ncias}{}% 18

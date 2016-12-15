@@ -57,7 +57,7 @@
 %\item A saída deve estar em ordem crescente (o elemento da saída não pode ser menor do que o seu antecessor de acordo com o critério adotado para ordenação);
 %\item A saída é uma permutação (reordenação) da entrada;
 %\end{itemize}
-	
+    
 %\section{Algoritmos $\mathbf{O(n^2)}$}
 %\subsection{Bubble Sort}
 
@@ -76,7 +76,7 @@
 %\hline 
 %Caso & Bubble Sort (us) & Insertion Sort (us) & Merge Sort (us) & Heap Sort (us) & Quick Sort (us) \\ 
 %\hline
-%Melhor & 0,86	& 0,84 & 8,49 & 1,99 & 2,61 \\
+%Melhor & 0,86  & 0,84 & 8,49 & 1,99 & 2,61 \\
 %\hline 
 %Pior & 24,97 & 24,56 & 8,97 & 7,73 & 15,8 \\
 %\hline
@@ -154,208 +154,166 @@ Mais a frente falaremos um pouco mais sobre as redundâncias dos caminhos de com
 Um dos principais desafios dos datacenters é possuir baixa latência, assim, a performance do sistema como um todo se mantém em um nível aceitável pelos usuários. Para isso, a topologia é muito importante, uma vez que quanto menor o caminho entre a fonte e o destino, menor a latência. Porém, outro fator que influencia muito a latência é o nível de congestionamento da rede, mais a frente iremos tratar sobre os protocolos e como estes controlam o nível de congestionamento da rede.\\
 
 \subsection{Capacidade da Rede}
-A capacidade da rede está quase que diretamente ligada à latência, quanto maior a capacidade da rede, menor a latência. O requisito é que a capacidade da rede seja suficiente para que atinja a demanda de forma que o desempenho e a qualidade de serviços não sejam afetados, independente da quantidade de usuários.\\
+
 
 \subsection{Virtualização}
-Outro requisito é a virtualização. Este requisito é relacionado à escalabilidade, onde permite que haja uma capacidade elástica da rede e além disso, que o sistema seja capaz de mover sistemas virtualizados de uma máquina física para outra, sem que haja problemas de compatibilidade. Isso só é possível com a virtualização, que executa o mesmo sistema em cima da camada de hardware de modo transparente para os usuários.\\
+
 
 \chapter{Motivação}
 
-O crescimento da demanda dos usuários tem sido exponencial nos últimos anos, o gráfico da figura \ref{consumo}. Com isso, cada vez mais as empresas precisam investir na expansão e atualização dos datacenters para acompanhar a demanda. A figura \ref{servidores} mostra o crescimento do número de racks com servidores entre 2011 e 2013 no leste do Estados Unidos.\\
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.7\textwidth]{imagens/consumo.png}
-\caption{Crescimento do consumo de dados}
-\label{consumo}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.7\textwidth]{imagens/servidores.png}
-\caption{Crescimento do número de servidores}
-\label{servidores}
-\end{figure}
-
-Apesar desse crescimento exponencial, o custo não aumenta, uma vez que com o passar dos anos, novas tecnologias fazem com que o preço dos componentes diminua, como mostra a figura \ref{custo}.\\
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.7\textwidth]{imagens/custo.png}
-\caption{Queda do custo dos componentes}
-\label{custo}
-\end{figure}
-
-Com toda a facilidade de expansão vem um custo. Este custo é relacionado com a perda de desempenho quando há subutilização da rede, ou seja, quanto maior e mais complexa a rede, mais difícil de gerenciar e com isso, há o aumento da latência. A figura \ref{capacity} mostra um pouco este desequilíbrio. A linha azul clara mosta a latência da rede e a linha azul escura mostra o número de servidores necessários para que a latência se mantenha constante com o aumento da quantidade de tráfego de dados.\\
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.7\textwidth]{imagens/capacity.png}
-\caption{Latência da rede x Aumento do tráfego}
-\label{capacity}
-\end{figure}
-
-Com isso, as topologias e os protocolos são muito importantes para equilibrar todos os requisitos sem que haja perda de qualidade de serviço para o usuário. A seguir, vamos apresentar as topologias das redes de datacenters mais utilizadas.\\
-
 \chapter{Topologias}
-A seguir, mostraremos algumas topologias, algumas são mais escaláveis, outras mais redundantes, porém todas possuem vantagens e desvantagens.\\
-
-\section{Tradicionais}
-As topologias tradicionais são aquelas que são fisicamente montadas e necessitam manutenção de hardware.\\
-
-\subsection{Baseadas em Árvores}
-As topologias baseadas em árvores são as seguintes:\\
-\begin{itemize}
-\item Basic Tree
-\item Fat-Tree
-\item VL2 
-\end{itemize}
-
-\paragraph{Basic Tree}
-A primeira estrutura hierárquica que foi pensada foi uma árvore básica, geralmente com 3 níveis, onde a raiz possui a tarefa de controlar os fluxos que entram e saem do datacenter. Os switches do segundo nível fazem a atribuição dos domínios, roteamento e balanceamento de carga. O terceiro nível é também responsável por um balanceamento de carga entre os servidores, mas em um nível menos. Além disso, este nível consegue controlar um pouco do congestionamento da rede.\\
-
-A figura \ref{basic_tree} mostra o esquema básico para esta árvore de 3 níveis.\\
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.8\textwidth]{imagens/basic_tree.png}
-\caption{Latência da rede x Aumento do tráfego}
-\label{basic_tree}
-\end{figure}
-
-O crescimento do Oversubscription na direção do Core da rede pode causar alguns problemas, como por exemplo o incast, onde os servidores tentam transmitir ao mesmo tempo na direção do Core, isto causa um congestionamento na rede.\\
-
-\paragraph{Fat-Tree}
-Para tentar resolver os problemas da topologia anterior, foi desenvolvida a Fat-Tree, que possui mais do que um switch Core e possui conexões cruzadas na camada de agregação. Isso faz com que seja possível os servidores utilizarem vários caminhos diferentes até um switch Core. Esta ideia da redundância de caminhos vem para evitar o congestionamento da rede e tentar resolver o problema do incast que ocorria no caso anterior.\\
-
-Além disso, é uma estrutura rearranjável não bloqueante e fornece uma relação de Oversubscription de 1:1 a todos os servidores. No entanto, a complexidade da fiação é O(n3), que é um desafio sério.\\
-
-A figura \ref{fat_tree} mostra a topologia básica para uma fat-tree de 3 níveis.\\
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.8\textwidth]{imagens/fat_tree.png}
-\caption{Latência da rede x Aumento do tráfego}
-\label{fat_tree}
-\end{figure}
-
-\paragraph{VL2}
-Esta topologia possui switches em uma topologia de rede CLOS que Usa o VLB (Valiant Load Balancing) para distribuir tráfego entre os caminhos da rede. Além disso, usa uma modificação do protocolo ARP (Address Resolution Protocol) para que seja escalável para um número grande de servidores, onde o broadcast é feito somente na região local de cada servidor.\\
-
-\subsection{Recursivas}
-As topologias recursivas são as seguintes:\\
-\begin{itemize}
-\item Dcell
-\item Bcube
-\item FiConn
-\item FlatNet
-\item SprintNet
-\end{itemize}
-
-\paragraph{Dcell}
-A topologia Dcell utiliza a ideia de células compostas por 1 switch e servidores conectados neste switch. As células são interligadas então através dos servidores com outras células. Assim, o número de células é limitado pelo número de portas do servidor. Esta topologia é meio limitada quanto à expansão, uma vez que para que haja a redundância de conexões, cada servidor está conectado com outro servidor em outra célula. Para expandir o número de células é necessário que haja uma troca do switch por outro com um número maior de portas.\\
-
-Neste caso, o roteamento dentro da própria célula é feito pelo switch e o roteamento com outras células é feito pelos próprios servidores, o que causa um overhead e consequentemente um pequeno atraso do redirecionamento dos fluxos.\\
-
-A figura \ref{dcell} mostra um exemplo desta topologia para switches com 4 portas.\\
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.8\textwidth]{imagens/dcell.png}
-\caption{Topologia Dcell para switches de 4 portas}
-\label{dcell}
-\end{figure}
-
-\paragraph{Bcube}
-Assim como no caso anterior, esta topologia se baseia na ideia de células interconectadas mas deixa a complexidade do redirecionamento dos fluxos para os switches, uma vez que neste caso, as células são conectadas por switches ao invés dos próprios servidores. Além disso, esta topologia também sofre limitações por conta do número de portas dos switches.\\
-
-A figura \ref{bcube} mostra esta topologia com 3 níveis e switches de 4 portas.\\
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.8\textwidth]{imagens/bcube.png}
-\caption{Topologia Bcube para switches de 4 portas}
-\label{bcube}
-\end{figure}
-
-\paragraph{FiConn}
-Esta topologia é muito semelhante à Dcell, porém possui a limitação de ter somente 2 links conectados em cada célula, ou seja, diminui a complexidade de fios que esta topologia necessita. Porém, a capacidade da rede é diminuida, uma vez que menos links significam menos largura de banda e pode ser que ocorram congestionamentos mais facilmente.\\
-
-A figura \ref{ficonn} mostra a topologia da rede.\\
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.8\textwidth]{imagens/ficonn.png}
-\caption{Topologia Bcube para switches de 4 portas}
-\label{ficonn}
-\end{figure}
-
-\paragraph{FlatNet}
-Esta topologia é semelhante ao Bcube, porém é mais interconectada, porque cada célula está conectada com $n$ switches, onde $n$ é o número de portas do switch interno da célula. A segunda camada de switches por sua vez conecta $n$ células. A diferença é que esta topologia divide a tarefa de roteamento com os switches e com os servidores, assim, os servidores podem rotear fluxos para outras células.\\
-
-A figura \ref{flatnet} mostra esta topologia para $n=4$.\\
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.8\textwidth]{imagens/flatnet.png}
-\caption{Topologia Bcube para switches de 4 portas}
-\label{flatnet}
-\end{figure}
-
-\paragraph{SprintNet}
-Esta topologia utiliza células com 2 switches e 4 servidores e existe uma redundância nas conexões internas da célula. Neste caso, todas as conexões entre células são feitas pelos servidores conectados com switches. Isso faz com que todo fluxo interno seja roteado pelo switch e o fluxo externo seja roteado tanto pelos switches como pelos servidores. Assim, existem diversos caminhos que podem ser utilizados para a comunicação inter-células.\\
-
-A figure \ref{sprintnet} mostra esta topologia.\\
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.8\textwidth]{imagens/springnet.png}
-\caption{Topologia Bcube para switches de 4 portas}
-\label{sprintnet}
-\end{figure}
-
-A tabela da figura \ref{comparacao} mostra a comparação da complexidade de algumas topologias mostradas. Como pode ser visto, as redes que suportam o maior número de servidores, também possuem uma complexidade muito grande de conexões, o que aumenta a complexidade de roteamento mas também aumenta o número de caminhos que podem ser escolhidos para um fluxo.\\
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=1.1\textwidth]{imagens/tabela.png}
-\caption{Topologia Bcube para switches de 4 portas}
-\label{comparacao}
-\end{figure}
-
-\section{SDN}
-
-Com o avanço do SDN, a ideia mais básica é definir servidores virtualizados e criar uma rede virtualizada. Este componente é a peça que faltava para criar datacenters totalmente definidos por software, uma vez que armazenamento e processamento virtualizados já existiam há um certo tempo. Com o SDN, é possível criar uma rede virtual com qualquer topologia e conectar máquinas virtuais para o processamento e discos virtuais para o armazenamento. A figura \ref{sdn} mostra a arquitetura de um datacenter virtualizado.\\
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.8\textwidth]{imagens/inside-sdn.jpg}
-\caption{Topologia Bcube para switches de 4 portas}
-\label{sdn}
-\end{figure}
-
-Para que isso seja possível, é necessário que haja uma modificação na camada dos servidores, onde os racks são substituídos por switches OpenFlow que escalonam as tarefas para máquinas virtuais na camada de borda. Esta técnica já é utilizada pelo Paypal e pode ser vista na figura \ref{paypal}.\\
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.45\textwidth]{imagens/sdn-1.jpg}
-\includegraphics[width=0.45\textwidth]{imagens/sdn-2.jpg}
-\caption{Topologia Bcube para switches de 4 portas}
-\label{paypal}
-\end{figure}
-
-O sistema fica então com duas camadas, uma camada física e uma camada virtualizada, como pode ser visto na figura \ref{sdn2}. A camada superior contém todos os recursos físicos do datacenter enquanto a camada inferior contém os recursos virtualizados. A interface entre as camadas é feita por um controlador SDN que é responsável por atribuir recursos físicos para recursos virtualizados.\\
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.8\textwidth]{imagens/sdn-3.jpg}
-\caption{Topologia Bcube para switches de 4 portas}
-\label{sdn2}
-\end{figure}
 
 \chapter{Protocolos}
 
+\section{Roteamento}
+
+Embora a maioria dos esquemas básicos de roteamento busquem rotas entre
+dois servidores com latência curta, um encaminhamento mais sofisticado exige maior
+consideração e otimização da latência, confiabilidade, throughput, energia e etc. Esse tipo
+de otimização é conhecido como problema de Traffic Engineering (TE).
+
+Existem poucos mecanismos para a otimização de roteamento Data Center Network (DCN)
+hoje em dia. Essa seção apresenta três diferentes esquemas de roteamento, ECMP, VL2 e DRAD.
+
+\subsection{Equal Cost Multipath (ECMP)}
+
+  Em um ambiente como datacenters, onde topologias como Fat-Tree, Clos proporcionam múltiplos caminhos,  
+  o ECMP é utilizado com intuíto de balancear a carga, dividindo a quantidade de pacotes ou fluxos ao
+  longo da topologia pelos seus múltiplos caminhos existentes. 
+  O ECMP possui dois modos de operação:
+
+
+  \begin{enumerate}
+    \item  \textbf{Balanceamento baseado em fluxo}\\  
+      Utiliza o hash na tupla de 5 campos de cada
+      pacote e o encaminha para uma interface de saída. Todos os pacotes do mesmo
+      fluxo TCP/IP serão encaminhados pela mesma interface. Este é o modo padrão de
+      funcionamento do ECMP.
+
+    \item \textbf{Balanceamento baseado em pacote}\\
+      Utiliza o modelo round robin para cada pa-
+      cote, fazendo com que pacotes do mesmo fluxo sigam por rotas diferentes.
+
+  \end{enumerate}
+
+  A diferença básica destes dois modos de operação do ECMP impacta diretamente
+  nos protocolos, tais como TCP ou MPTCP. Quando utiliza-se o modo de balanceamento
+  baseado em pacote, pacotes que pertencem ao mesmo fluxo TCP/IP são roteados por
+  rotas diferentes o que pode causar reordenação nos hosts finais e consequentemente di-
+  minuir a taxa de transferência. 
+
+  Quando o balanceamento baseado em fluxos é utilizado, o problema da entrega desordenada
+  não ocorre pois todos os pacotes de um mesmo fluxo TCP/IP seguem a mesma rota.
+  O ECMP, mesmo usando o modelo baseado em fluxo que normalmente se apresenta como 
+  melhor solução, ainda sofre com as colisões que ocorrem
+  um vez que soluções baseadas em hashing estatisticamente podem gerar as mesmas saídas
+  quando aplicadas em diferentes entradas. 
+  
+  No caso da utilização do ECMP para balancear fluxos MPTCP, isso pode significar 
+  alocar os subfluxos de uma mesma conexão MPTCP em uma mesma rota.
+
+\subsection{VL2}
+
+  É outro mecanismo de seleção de caminhos distribuídos. Diferente do ECMP,
+  ele coloca a lógica de seleção nos swithces da borda. Em VL2, um swithc da borda
+  encaminha primeiro um fluxo a um swithc do núcleo, selecionado aleatoriamente, que
+  então encaminha o fluxo para o destino. Como resultado, múltiplos fluxos
+  ainda pode colidir na mesma porta de saída como ECMP.
+
+\subsection{Distributed Adaptive Routing for Datacenter Networks (DRAD)}
+
+Difere do ECMP e VL2 em dois aspectos. Primeiro, seu algoritmo de seleção de caminho é
+sensível à carga. Se vários fluxos colidem no mesmo caminho, o algoritmo deslocará os fluxos do caminho colidido
+para os caminhos mais ligeiramente carregados. Em segundo lugar, coloca a lógica de seleção de
+caminhos em sistemas finais, em vez de em switches, para facilitar a implantação. 
+
+Um módulo de seleção de caminho que executa em um sistema de extremidade monitora
+o estado do caminho e comuta-o de acordo com a carga. 
+Uma DCN pode implantar o DARD atualizando a pilha de software do seu sistema final em vez de atualizar switches.
+
 \chapter{Tendências}
+
+\section{Facebook Fabric}
+
+
+
+
+
+
+Para a próxima geração de projeto de rede de data center, O Facebook se desafiou a fazer todo o data center construindo uma rede de alto desempenho, em vez de um sistema hierarquicamente super-assinado (oversubscription) de clusters. 
+O Facebook Também queria um caminho claro e fácil para a rápida implantação de rede e escalabilidade de desempenho sem perder as
+infraestruturas maciças já construídas, sempre que precisasse de mais capacidade.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\textwidth]{imagens/datacenter_facebook.jpg}
+\caption{Data Center do Facebook em Altoona Pennsylvania - EUA}
+\label{dc_container}
+\end{figure}
+
+Para conseguir isso, foi utilizada uma abordagem desagregada: 
+em vez dos grandes dispositivos e clusters, 
+a rede foi quebrada em pequenas unidades idênticas, 
+pods de servidor, e foi conectividade uniforme de alto desempenho entre todos os pods do data center.
+
+
+Cada pod é servido por um conjunto de quatro dispositivos que são chamados de fabric switches, utilizando a arquitetura de 4-postos 3 + 1 para 
+uplinks TOR de rack de servidor e escalável além disso, se necessário. Cada TOR tem  4 x 40G uplinks, 
+fornecendo 160G de capacidade total de largura de banda para um rack de servidores conectados a 10G.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\textwidth]{imagens/pod.jpg}
+\caption{Um pod simples - nova unidade de rede do Facebook Fabric}
+\label{dc_container}
+\end{figure}
+
+
+O que difere das arquitetura anteriores é que cada pod tem apenas 48 racks de servidor, 
+e este fator é sempre o mesmo para todos os pods. 
+É um bloco de construção eficiente que se encaixa bem em várias plantas de centro de dados,
+e requer apenas switches básicos de tamanho médio para agregar os TORs. 
+A menor densidade de portas dos fabrice switches torna essa arquitetura interna muito simples, 
+modular e robusta, e há várias opções de fácil acesso disponíveis em várias fontes.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\textwidth]{imagens/scheme_fabric.jpg}
+\caption{Esquemático da topologia do Fabric Data Center}
+\label{dc_container}
+\end{figure}
+
+
+Este design altamente modular permite dimensionar rapidamente a capacidade em qualquer dimensão, 
+dentro de uma estrutura simples e uniforme.
+
+
+O Fabric foi construido usando padrão BGP4 como o único protocolo de roteamento. 
+Para manter as coisas simples, foi usado apenas os recursos mínimos de protocolo necessários. 
+Isso nos permitiu aproveitar o desempenho e a escalabilidade de um plano de controle distribuído para convergência, 
+oferecendo gerenciamento de propagação de roteamento rígido e granular e garantindo compatibilidade com uma ampla 
+gama de sistemas e software existentes. Ao mesmo tempo, foi desenvolvido um controlador BGP centralizado que é capaz de 
+substituir quaisquer caminhos de roteamento no fabric por decisões de software puro. 
+
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\textwidth]{imagens/phisic_fabric.jpg}
+\caption{Esquemático otimizado da topologia física do Fabric Data Center}
+\label{dc_container}
+\end{figure}
+
+
+Apesar da grande escala de centenas de milhares de fios de fibra, a infraestrutura física 
+e de cabeamento é muito menos complexo do que pode parecer nos desenhos de topologia de rede lógica. 
+Os projetos de construção do Fabric foram otimizados, para encurtar comprimentos de cabeamento 
+e permitir uma rápida implantação. Altoona foi a primeira implementação deste novo tipo de layout.
+
+
+
 
 \chapter{Conclusão}
 
