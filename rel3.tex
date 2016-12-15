@@ -219,7 +219,7 @@ A figura \ref{basic_tree} mostra o esquema básico para esta árvore de 3 nívei
 \begin{figure}[H]
 \centering
 \includegraphics[width=.8\textwidth]{imagens/basic_tree.png}
-\caption{Latência da rede x Aumento do tráfego}
+\caption{Topologia da Basic Tree}
 \label{basic_tree}
 \end{figure}
 
@@ -235,7 +235,7 @@ A figura \ref{fat_tree} mostra a topologia básica para uma fat-tree de 3 nívei
 \begin{figure}[H]
 \centering
 \includegraphics[width=.8\textwidth]{imagens/fat_tree.png}
-\caption{Latência da rede x Aumento do tráfego}
+\caption{Topologia da Fat-Tree}
 \label{fat_tree}
 \end{figure}
 
@@ -286,7 +286,7 @@ A figura \ref{ficonn} mostra a topologia da rede.\\
 \begin{figure}[H]
 \centering
 \includegraphics[width=.8\textwidth]{imagens/ficonn.png}
-\caption{Topologia Bcube para switches de 4 portas}
+\caption{Topologia Ficonn para switches de 4 portas}
 \label{ficonn}
 \end{figure}
 
@@ -298,7 +298,7 @@ A figura \ref{flatnet} mostra esta topologia para $n=4$.\\
 \begin{figure}[H]
 \centering
 \includegraphics[width=.8\textwidth]{imagens/flatnet.png}
-\caption{Topologia Bcube para switches de 4 portas}
+\caption{Topologia FlatNet para switches de 4 portas}
 \label{flatnet}
 \end{figure}
 
@@ -310,7 +310,7 @@ A figure \ref{sprintnet} mostra esta topologia.\\
 \begin{figure}[H]
 \centering
 \includegraphics[width=.8\textwidth]{imagens/springnet.png}
-\caption{Topologia Bcube para switches de 4 portas}
+\caption{Topologia SprintNet}
 \label{sprintnet}
 \end{figure}
 
@@ -319,7 +319,7 @@ A tabela da figura \ref{comparacao} mostra a comparação da complexidade de alg
 \begin{figure}[H]
 \centering
 \includegraphics[width=1.1\textwidth]{imagens/tabela.png}
-\caption{Topologia Bcube para switches de 4 portas}
+\caption{Comparação das complexidades de servidores e links}
 \label{comparacao}
 \end{figure}
 
@@ -330,7 +330,7 @@ Com o avanço do SDN, a ideia mais básica é definir servidores virtualizados e
 \begin{figure}[H]
 \centering
 \includegraphics[width=.8\textwidth]{imagens/inside-sdn.jpg}
-\caption{Topologia Bcube para switches de 4 portas}
+\caption{Datacenter virtualizado}
 \label{sdn}
 \end{figure}
 
@@ -340,7 +340,7 @@ Para que isso seja possível, é necessário que haja uma modificação na camad
 \centering
 \includegraphics[width=0.45\textwidth]{imagens/sdn-1.jpg}
 \includegraphics[width=0.45\textwidth]{imagens/sdn-2.jpg}
-\caption{Topologia Bcube para switches de 4 portas}
+\caption{Exemplo de SDN utilizado em datacenters do Paypal}
 \label{paypal}
 \end{figure}
 
@@ -349,7 +349,7 @@ O sistema fica então com duas camadas, uma camada física e uma camada virtuali
 \begin{figure}[H]
 \centering
 \includegraphics[width=.8\textwidth]{imagens/sdn-3.jpg}
-\caption{Topologia Bcube para switches de 4 portas}
+\caption{Interface entre a camada física e a camada virtualizada}
 \label{sdn2}
 \end{figure}
 
@@ -438,7 +438,7 @@ infraestruturas maciças já construídas, sempre que precisasse de mais capacid
 \centering
 \includegraphics[width=.7\textwidth]{imagens/datacenter_facebook.jpg}
 \caption{Data Center do Facebook em Altoona Pennsylvania - EUA}
-\label{dc_container}
+\label{face1}
 \end{figure}
 
 Para conseguir isso, foi utilizada uma abordagem desagregada: 
@@ -455,7 +455,7 @@ fornecendo 160G de capacidade total de largura de banda para um rack de servidor
 \centering
 \includegraphics[width=.7\textwidth]{imagens/pod.jpg}
 \caption{Um pod simples - nova unidade de rede do Facebook Fabric}
-\label{dc_container}
+\label{face2}
 \end{figure}
 
 
@@ -471,7 +471,7 @@ modular e robusta, e há várias opções de fácil acesso disponíveis em vári
 \centering
 \includegraphics[width=.7\textwidth]{imagens/scheme_fabric.jpg}
 \caption{Esquemático da topologia do Fabric Data Center}
-\label{dc_container}
+\label{face3}
 \end{figure}
 
 
@@ -493,7 +493,7 @@ substituir quaisquer caminhos de roteamento no fabric por decisões de software 
 \centering
 \includegraphics[width=.7\textwidth]{imagens/phisic_fabric.jpg}
 \caption{Esquemático otimizado da topologia física do Fabric Data Center}
-\label{dc_container}
+\label{face4}
 \end{figure}
 
 
@@ -507,7 +507,7 @@ e permitir uma rápida implantação. Altoona foi a primeira implementação des
 SDDC (Software Defined Data Center): Com o avanço do SDN e virtualização de recursos, a
 tendência é montar data centers sob demanda. Estes data centers definidos por software são
 independentes da topologia e possuem um gerenciador de recursos fazendo a interface entre a
-rede fı́sica e a rede virtualizada.
+rede fı́sica e a rede virtualizada.\\
 
 \section{DCOS}
 
