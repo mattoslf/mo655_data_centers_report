@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.6.22)  14 DEC 2016 22:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.6.22)  14 DEC 2016 23:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -849,7 +849,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 113--114
 
  []
 
-<imagens/datacenter.png, id=84, 947.54pt x 701.62125pt>
+<imagens/datacenter.png, id=104, 947.54pt x 701.62125pt>
 File: imagens/datacenter.png Graphic file (type png)
 
 <use imagens/datacenter.png>
@@ -898,7 +898,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 139--140
 
  []
 
-<imagens/container_dc.jpg, id=92, 702.625pt x 603.25375pt>
+<imagens/container_dc.jpg, id=112, 702.625pt x 603.25375pt>
 File: imagens/container_dc.jpg Graphic file (type jpg)
 
 <use imagens/container_dc.jpg>
@@ -941,8 +941,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 154--155
 
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 156.
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--158
+
+ []
+
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 159.
+
+Underfull \hbox (badness 10000) in paragraph at lines 160--161
+
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 15.04742pt.
@@ -957,85 +967,282 @@ Package babel Info: Redefining portuges shorthand "|
  2.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 162.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 164.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 164.
-[5
 
-]
+Underfull \hbox (badness 10000) in paragraph at lines 164--165
+
+ []
+
+<imagens/consumo.png, id=126, 572.1375pt x 451.6875pt>
+File: imagens/consumo.png Graphic file (type png)
+
+<use imagens/consumo.png>
+Package pdftex.def Info: imagens/consumo.png used on input line 168.
+(pdftex.def)             Requested size: 338.58632pt x 267.30658pt.
+
+<imagens/servidores.png, id=127, 427.3566pt x 302.5704pt>
+File: imagens/servidores.png Graphic file (type png)
+
+<use imagens/servidores.png>
+Package pdftex.def Info: imagens/servidores.png used on input line 175.
+(pdftex.def)             Requested size: 338.58632pt x 239.72513pt.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 179.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 179.
+ [5
+
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}) 
+has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.179 
+       <./imagens/consumo.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
+
+ []
+
+<imagens/custo.png, id=136, 501.875pt x 387.4475pt>
+File: imagens/custo.png Graphic file (type png)
+ <use imagens/custo.png>
+Package pdftex.def Info: imagens/custo.png used on input line 184.
+(pdftex.def)             Requested size: 338.58632pt x 261.40344pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 189--190
+
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 15.04742pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 190.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 190.
+[6pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.190 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+2.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.190 
+       <./imagens/servidores.png> <./imagens/custo.png (PNG copy)>]
+<imagens/capacity.png, id=145, 552.0625pt x 366.36874pt>
+File: imagens/capacity.png Graphic file (type png)
+
+<use imagens/capacity.png>
+Package pdftex.def Info: imagens/capacity.png used on input line 193.
+(pdftex.def)             Requested size: 338.58632pt x 224.70888pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 198--199
+
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 15.04742pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 200.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 200.
+[7pdfTeX warning (ext4): destination with the same identifier (name{figure.2.4}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.200 \chapter
+              {Topologias} <./imagens/capacity.png>]
  3.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 164.
+(babel)             in language  on input line 200.
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
+
+ []
+
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 166.
+(babel)             in language  on input line 203.
+
+Underfull \hbox (badness 10000) in paragraph at lines 204--205
+
+ []
+
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 166.
-[6
+(babel)             in language  on input line 206.
+
+Underfull \hbox (badness 10000) in paragraph at lines 207--208
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--218
+
+ []
+
+<imagens/basic_tree.png, id=153, 916.42375pt x 391.4625pt>
+File: imagens/basic_tree.png Graphic file (type png)
+
+<use imagens/basic_tree.png>
+Package pdftex.def Info: imagens/basic_tree.png used on input line 221.
+(pdftex.def)             Requested size: 386.95897pt x 165.29715pt.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 225.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 225.
+ [8
 
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 226--227
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 229--230
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 231--232
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 233--234
+
+ []
+
+<imagens/fat_tree.png, id=162, 920.43875pt x 397.485pt>
+File: imagens/fat_tree.png Graphic file (type png)
+
+<use imagens/fat_tree.png>
+Package pdftex.def Info: imagens/fat_tree.png used on input line 237.
+(pdftex.def)             Requested size: 386.95897pt x 167.10631pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--244
+
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 244.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 244.
+[9pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.244 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+3.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.244 
+       <./imagens/basic_tree.png> <./imagens/fat_tree.png>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 245.
+
+Underfull \hbox (badness 10000) in paragraph at lines 246--247
+
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 261.
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 263.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 263.
+[10]
  4.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 166.
+(babel)             in language  on input line 263.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 168.
+(babel)             in language  on input line 265.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 168.
-[7
+(babel)             in language  on input line 265.
+[11
 
 ]
  5.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 168.
+(babel)             in language  on input line 265.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 170.
+(babel)             in language  on input line 267.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 170.
-[8
+(babel)             in language  on input line 267.
+[12
 
 ]
  6.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 170.
+(babel)             in language  on input line 267.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 172.
+(babel)             in language  on input line 269.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 172.
-[9
+(babel)             in language  on input line 269.
+[13
 
 ]
  7.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 172.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 175.
+(babel)             in language  on input line 269.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 272.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 179.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 276.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 179.
+(babel)             in language  on input line 276.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 179.
- [10
+(babel)             in language  on input line 276.
+ [14
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 179.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 276.
  (./rel3.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 179.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 179.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 276.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 276.
 Package rerunfilecheck Info: File `rel3.out' has not changed.
-(rerunfilecheck)             Checksum: 24373EEF92501741DE4093F43CC69928;751.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 179.
+(rerunfilecheck)             Checksum: D43F81A5BCF97DFFD7860EC4A56BC148;1000.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 276.
  ) 
 Here is how much of TeX's memory you used:
- 10407 strings out of 494929
- 158011 string characters out of 6180142
- 256218 words of memory out of 5000000
- 13502 multiletter control sequences out of 15000+600000
+ 10469 strings out of 494929
+ 159021 string characters out of 6180142
+ 256588 words of memory out of 5000000
+ 13536 multiletter control sequences out of 15000+600000
  18143 words of font info for 53 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 40i,11n,46p,542b,406s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,11n,46p,546b,406s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/luis/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </home/lu
 is/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/luis/.texmf-va
 r/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/luis/.texmf-var/fonts/pk/l
@@ -1044,10 +1251,10 @@ en/ec/ecbx1200.600pk> </home/luis/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx24
 88.600pk> </home/luis/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </
 home/luis/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on rel3.pdf (11 pages, 700070 bytes).
+Output written on rel3.pdf (15 pages, 1062672 bytes).
 PDF statistics:
- 429 PDF objects out of 1000 (max. 8388607)
- 151 compressed objects within 2 object streams
- 27 named destinations out of 1000 (max. 500000)
- 115 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 531 PDF objects out of 1000 (max. 8388607)
+ 211 compressed objects within 3 object streams
+ 49 named destinations out of 1000 (max. 500000)
+ 177 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -154,14 +154,111 @@ Mais a frente falaremos um pouco mais sobre as redundâncias dos caminhos de com
 Um dos principais desafios dos datacenters é possuir baixa latência, assim, a performance do sistema como um todo se mantém em um nível aceitável pelos usuários. Para isso, a topologia é muito importante, uma vez que quanto menor o caminho entre a fonte e o destino, menor a latência. Porém, outro fator que influencia muito a latência é o nível de congestionamento da rede, mais a frente iremos tratar sobre os protocolos e como estes controlam o nível de congestionamento da rede.\\
 
 \subsection{Capacidade da Rede}
-
+A capacidade da rede está quase que diretamente ligada à latência, quanto maior a capacidade da rede, menor a latência. O requisito é que a capacidade da rede seja suficiente para que atinja a demanda de forma que o desempenho e a qualidade de serviços não sejam afetados, independente da quantidade de usuários.\\
 
 \subsection{Virtualização}
-
+Outro requisito é a virtualização. Este requisito é relacionado à escalabilidade, onde permite que haja uma capacidade elástica da rede e além disso, que o sistema seja capaz de mover sistemas virtualizados de uma máquina física para outra, sem que haja problemas de compatibilidade. Isso só é possível com a virtualização, que executa o mesmo sistema em cima da camada de hardware de modo transparente para os usuários.\\
 
 \chapter{Motivação}
 
+O crescimento da demanda dos usuários tem sido exponencial nos últimos anos, o gráfico da figura \ref{consumo}. Com isso, cada vez mais as empresas precisam investir na expansão e atualização dos datacenters para acompanhar a demanda. A figura \ref{servidores} mostra o crescimento do número de racks com servidores entre 2011 e 2013 no leste do Estados Unidos.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\textwidth]{imagens/consumo.png}
+\caption{Crescimento do consumo de dados}
+\label{consumo}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\textwidth]{imagens/servidores.png}
+\caption{Crescimento do número de servidores}
+\label{servidores}
+\end{figure}
+
+Apesar desse crescimento exponencial, o custo não aumenta, uma vez que com o passar dos anos, novas tecnologias fazem com que o preço dos componentes diminua, como mostra a figura \ref{custo}.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\textwidth]{imagens/custo.png}
+\caption{Queda do custo dos componentes}
+\label{custo}
+\end{figure}
+
+Com toda a facilidade de expansão vem um custo. Este custo é relacionado com a perda de desempenho quando há subutilização da rede, ou seja, quanto maior e mais complexa a rede, mais difícil de gerenciar e com isso, há o aumento da latência. A figura \ref{capacity} mostra um pouco este desequilíbrio. A linha azul clara mosta a latência da rede e a linha azul escura mostra o número de servidores necessários para que a latência se mantenha constante com o aumento da quantidade de tráfego de dados.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\textwidth]{imagens/capacity.png}
+\caption{Latência da rede x Aumento do tráfego}
+\label{capacity}
+\end{figure}
+
+Com isso, as topologias e os protocolos são muito importantes para equilibrar todos os requisitos sem que haja perda de qualidade de serviço para o usuário. A seguir, vamos apresentar as topologias das redes de datacenters mais utilizadas.\\
+
 \chapter{Topologias}
+A seguir, mostraremos algumas topologias, algumas são mais escaláveis, outras mais redundantes, porém todas possuem vantagens e desvantagens.\\
+
+\section{Tradicionais}
+As topologias tradicionais são aquelas que são fisicamente montadas e necessitam manutenção de hardware.\\
+
+\subsection{Baseadas em Árvores}
+As topologias baseadas em árvores são as seguintes:\\
+\begin{itemize}
+\item Basic Tree
+\item Fat-Tree
+\item VL2 
+\end{itemize}
+
+\paragraph{Basic Tree}
+A primeira estrutura hierárquica que foi pensada foi uma árvore básica, geralmente com 3 níveis, onde a raiz possui a tarefa de controlar os fluxos que entram e saem do datacenter. Os switches do segundo nível fazem a atribuição dos domínios, roteamento e balanceamento de carga. O terceiro nível é também responsável por um balanceamento de carga entre os servidores, mas em um nível menos. Além disso, este nível consegue controlar um pouco do congestionamento da rede.\\
+
+A figura \ref{basic_tree} mostra o esquema básico para esta árvore de 3 níveis.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\textwidth]{imagens/basic_tree.png}
+\caption{Latência da rede x Aumento do tráfego}
+\label{basic_tree}
+\end{figure}
+
+O crescimento do Oversubscription na direção do Core da rede pode causar alguns problemas, como por exemplo o incast, onde os servidores tentam transmitir ao mesmo tempo na direção do Core, isto causa um congestionamento na rede.\\
+
+\paragraph{Fat-Tree}
+Para tentar resolver os problemas da topologia anterior, foi desenvolvida a Fat-Tree, que possui mais do que um switch Core e possui conexões cruzadas na camada de agregação. Isso faz com que seja possível os servidores utilizarem vários caminhos diferentes até um switch Core. Esta ideia da redundância de caminhos vem para evitar o congestionamento da rede e tentar resolver o problema do incast que ocorria no caso anterior.\\
+
+Além disso, é uma estrutura rearranjável não bloqueante e fornece uma relação de Oversubscription de 1:1 a todos os servidores. No entanto, a complexidade da fiação é O(n3), que é um desafio sério.\\
+
+A figura \ref{fat_tree} mostra a topologia básica para uma fat-tree de 3 níveis.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\textwidth]{imagens/fat_tree.png}
+\caption{Latência da rede x Aumento do tráfego}
+\label{fat_tree}
+\end{figure}
+
+\paragraph{VL2}
+Esta topologia possui switches em uma topologia de rede CLOS que Usa o VLB (Valiant Load Balancing) para distribuir tráfego entre os caminhos da rede. Além disso, usa uma modificação do protocolo ARP (Address Resolution Protocol) para que seja escalável para um número grande de servidores, onde o broadcast é feito somente na região local de cada servidor.\\
+
+\subsection{Recursivas}
+As topologias recursivas são as seguintes:\\
+\begin{itemize}
+\item Dcell
+\item Bcube
+\item FiConn
+\item FlatNet
+\item SprintNet
+\end{itemize}
+
+\paragraph{Dcell}
+\paragraph{Bcube}
+\paragraph{FiConn}
+\paragraph{FlatNet}
+\paragraph{SprintNet}
+
+\section{SDN}
 
 \chapter{Protocolos}
 

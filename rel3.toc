@@ -7,8 +7,20 @@
 \contentsline {subsection}{\numberline {1.1.4}Capacidade da Rede}{4}{subsection.1.1.4}
 \contentsline {subsection}{\numberline {1.1.5}Virtualiza\IeC {\c c}\IeC {\~a}o}{4}{subsection.1.1.5}
 \contentsline {chapter}{\numberline {2}Motiva\IeC {\c c}\IeC {\~a}o}{5}{chapter.2}
-\contentsline {chapter}{\numberline {3}Topologias}{6}{chapter.3}
-\contentsline {chapter}{\numberline {4}Protocolos}{7}{chapter.4}
-\contentsline {chapter}{\numberline {5}Tend\IeC {\^e}ncias}{8}{chapter.5}
-\contentsline {chapter}{\numberline {6}Conclus\IeC {\~a}o}{9}{chapter.6}
-\contentsline {chapter}{\numberline {7}Refer\IeC {\^e}ncias}{10}{chapter.7}
+\contentsline {chapter}{\numberline {3}Topologias}{8}{chapter.3}
+\contentsline {section}{\numberline {3.1}Tradicionais}{8}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Baseadas em \IeC {\'A}rvores}{8}{subsection.3.1.1}
+\contentsline {paragraph}{Basic Tree}{8}{section*.2}
+\contentsline {paragraph}{Fat-Tree}{9}{section*.3}
+\contentsline {paragraph}{VL2}{10}{section*.4}
+\contentsline {subsection}{\numberline {3.1.2}Recursivas}{10}{subsection.3.1.2}
+\contentsline {paragraph}{Dcell}{10}{section*.5}
+\contentsline {paragraph}{Bcube}{10}{section*.6}
+\contentsline {paragraph}{FiConn}{10}{section*.7}
+\contentsline {paragraph}{FlatNet}{10}{section*.8}
+\contentsline {paragraph}{SprintNet}{10}{section*.9}
+\contentsline {section}{\numberline {3.2}SDN}{10}{section.3.2}
+\contentsline {chapter}{\numberline {4}Protocolos}{11}{chapter.4}
+\contentsline {chapter}{\numberline {5}Tend\IeC {\^e}ncias}{12}{chapter.5}
+\contentsline {chapter}{\numberline {6}Conclus\IeC {\~a}o}{13}{chapter.6}
+\contentsline {chapter}{\numberline {7}Refer\IeC {\^e}ncias}{14}{chapter.7}
